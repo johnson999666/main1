@@ -17,7 +17,9 @@ app.get('/', (req, res) => {
   res.render('index', { name: 'World' });
 });
 
-
+app.get('/pics', (req, res) => {
+  res.render('pics', { name: 'World' });
+});
 
 
 
