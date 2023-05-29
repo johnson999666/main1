@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Page Title</title>
+  <style>
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    body {
+      font-family: Cheltenham, Times New Roman, serif;
+    }
+    
+    h1 {
+      font-size: 48px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: "Crimson Text", Georgia, serif;
+    }
+  </style>
+</head>
+<style>
+    /* Reset default browser styles */
+    body, h1, h2 {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgb(205, 177, 131);
+      color: #fff;
+      padding: 20px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+
+    .login-form {
+      display: flex;
+      align-items: center;
+    }
+
+    .login-form label {
+      margin-right: 10px;
+      color: #fff;
+    }
+
+    .login-form input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .login-form button[type="submit"] {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
+
+  </style>
+</head>
+<%- include('header') %>
+<body>
+  <header style="padding-top: 70px;">
+    <nav>
+      <h1 class="logo"></h1>
+      <form class="login-form">
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login">
+        <button style="margin: 5px;" type="submit">Submit</button>
+      </form>
+    </nav>
+  </header>
+<body>
+  <h1 style="padding-top: 30px;">Your Heading Text</h1>
+  
+  <h1>News</h1>
+
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Live News </title>
+  <style>
+    /* Your CSS styles here */
+  </style>
+</head>
+<body>
+  <!-- Your HTML markup here -->
+
+  <h1>Web Parsing</h1>
+
+  <body>
+    <h1><%= title %></h1>
+
+    <% paragraphs.forEach(paragraph => { %>
+        <p style="font-family: Arial, sans-serif; font-size: 20px; padding: 10px; margin-right: 30px; margin-left: 30px;"> <%= paragraph %> </p>
+    <% }); %>
+  
+</body>
+</html>
