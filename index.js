@@ -21,7 +21,9 @@ app.get('/pics', (req, res) => {
   res.render('pics', { name: 'World' });
 });
 
-
+app.get('/face', (req, res) => {
+  res.render('face', { name: 'World' });
+});
 
 
 
