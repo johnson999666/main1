@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Product Catalog</title>
+  
   <style>
     body {
       margin: 0;
@@ -48,6 +49,7 @@
 
     h1 {
       font-size: 36px;
+      margin-top: 70px;
       margin-bottom: 20px;
     }
 
@@ -63,6 +65,7 @@
   </style>
 </head>
 <body>
+    <%- include('header') %>
   <h1>Product Catalog</h1>
 
   <div id="catalog-container">
@@ -138,5 +141,6 @@
 
     <!-- Add more product divs here -->
   </div>
+  <%- include('footer') %>
 </body>
 </html>
