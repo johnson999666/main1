@@ -18,6 +18,10 @@ app.get('/face', (req, res) => {
   res.render('face', { name: 'World' });
 });
 
+app.get('/store', (req, res) => {
+  res.render('store', { name: 'World' });
+});
+
 app.get('/news', async (req, res) => {
   try {
     const response = await axios.get('https://medium.com/@emilymenonbender/thought-experiment-in-the-national-library-of-thailand-f2bf761a8a83');

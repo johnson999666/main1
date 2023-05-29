@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Catalog</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #catalog-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product {
+      flex: 0 0 300px;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .product img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+    }
+
+    .product .price {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .product .like-button {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .product {
+        flex-basis: calc(50% - 40px);
+      }
+    }
+  </style>
+</head>
+<body>
+     <h1>Product Catalog</h1>
+  <div id="catalog-container">
+   
+
+    <div class="product">
+      <img src="images/five.jpg" alt="Product 1">
+      <div class="price">$10</div>
+      <button class="like-button">Like</button>
+    </div>
+
+    <div class="product">
+      <img src="images/five.jpg" alt="Product 2">
+      <div class="price">$15</div>
+      <button class="like-button">Like</button>
+    </div>
+
+    <div class="product">
+      <img src="images/five.jpg" alt="Product 3">
+      <div class="price">$20</div>
+      <button class="like-button">Like</button>
+    </div>
+    <div class="product">
+        <img src="images/five.jpg" alt="Product 3">
+        <div class="price">$20</div>
+        <button class="like-button">Like</button>
+      </div>
+      <div class="product">
+        <img src="images/five.jpg" alt="Product 3">
+        <div class="price">$20</div>
+        <button class="like-button">Like</button>
+      </div>
+      <div class="product">
+        <img src="images/five.jpg" alt="Product 3">
+        <div class="price">$20</div>
+        <button class="like-button">Like</button>
+      </div>
+      
+
+    <!-- Add more product divs here -->
+  </div>
+</body>
+</html>
