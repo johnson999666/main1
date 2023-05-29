@@ -24,12 +24,26 @@
     .product img {
       width: 500px;
       height: 400px;
-      object-fit: cover; /* Added object-fit property */
+      object-fit: cover;
     }
 
     .product .price {
       font-size: 30px;
       margin-top: 10px;
+    }
+
+    .product .buy-button {
+      font-size: 24px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #f8c400;
+      color: black;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product .buy-button:hover {
+      background-color: #ffc107;
     }
 
     .product .like-button {
@@ -71,6 +85,7 @@
     <div class="product">
       <img src="images/five.jpg" alt="Product 1">
       <div class="price">$10</div>
+      <button class="buy-button">Buy</button>
       <button class="like-button">Like</button>
       <span class="like-count">0</span>
     </div>
@@ -78,6 +93,7 @@
     <div class="product">
       <img src="images/five.jpg" alt="Product 2">
       <div class="price">$15</div>
+      <button class="buy-button">Buy</button>
       <button class="like-button">Like</button>
       <span class="like-count">0</span>
     </div>
@@ -85,30 +101,33 @@
     <div class="product">
       <img src="images/five.jpg" alt="Product 3">
       <div class="price">$20</div>
+      <button class="buy-button">Buy</button>
       <button class="like-button">Like</button>
       <span class="like-count">0</span>
     </div>
     <div class="product">
         <img src="images/five.jpg" alt="Product 1">
         <div class="price">$10</div>
+        <button class="buy-button">Buy</button>
         <button class="like-button">Like</button>
         <span class="like-count">0</span>
       </div>
   
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 2">
-        <div class="price">$15</div>
-        <button class="like-button">Like</button>
-        <span class="like-count">0</span>
-      </div>
-  
+   
       <div class="product">
         <img src="images/five.jpg" alt="Product 3">
         <div class="price">$20</div>
+        <button class="buy-button">Buy</button>
         <button class="like-button">Like</button>
         <span class="like-count">0</span>
       </div>
-  
+      <div class="product">
+          <img src="images/five.jpg" alt="Product 1">
+          <div class="price">$10</div>
+          <button class="buy-button">Buy</button>
+          <button class="like-button">Like</button>
+          <span class="like-count">0</span>
+        </div>
     <!-- Add more product divs here -->
   </div>
 </body>
