@@ -1,98 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .image-container {
-            flex: 1 0 300px; /* Set a specific width for the image container */
-            height: 300px; /* Set a specific height for the image container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .image-container img {
-            width: 100%; /* Make the image fill the container */
-            height: 100%; /* Make the image fill the container */
-            object-fit: cover;
-        }
-
-        .like-button {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin: 15px;
-        }
-
-        .like-button img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .image-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: -10px;
-            box-sizing: border-box;
-        }
-
-        @media screen and (max-width: 480px) {
-            .image-container {
-                flex-basis: 50%;
-                height: auto;
-            }
-        }
-    </style>
-    <%- include('header') %>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* HTML and Body */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Container for the pictures */
+    .picture-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: -5px; /* Negative margin to remove gaps between pictures */
+      margin-top: 60px;
+    }
+    
+    /* Individual picture */
+    .picture {
+      flex: 0 0 calc(33.33% - 10px); /* Adjust the width percentage and margin as per your needs */
+      margin: 5px; /* Margin to create gaps between pictures */
+      padding: 0;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-sizing: border-box; /* Include margin and padding in element's total width and height */
+    }
+    
+    /* Picture image */
+    .picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Remove default list styles */
+    .picture-container,
+    .picture {
+      list-style: none;
+    }
+    
+    @media (max-width: 600px) {
+      /* For small screens, adjust the number of columns */
+      .picture {
+        flex: 0 0 calc(50% - 10px); /* Adjust the width percentage and margin as per your needs */
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="image-wrapper">
-        <div class="image-container">
-            <img src="images/one.jpg" alt="Image 1">
-            <div class="like-button">
-                <img src="images/thumb-icon.png" alt="Like Button">
-            </div>
-        </div>
-        <div class="image-container">
-            <img src="images/two.jpg" alt="Image 2">
-            <div class="like-button">
-                <img src="images/thumb-icon.png" alt="Like Button">
-            </div>
-        </div>
-        <div class="image-container">
-            <img src="images/three.jpg" alt="Image 3">
-            <div class="like-button">
-                <img src="images/thumb-icon.png" alt="Like Button">
-            </div>
-        </div>
-        <div class="image-container">
-            <img src="images/four.jpg" alt="Image 4">
-            <div class="like-button">
-                <img src="images/thumb-icon.png" alt="Like Button">
-            </div>
-        </div>
-        <div class="image-container">
-            <img src="images/five.png" alt="Image 5">
-            <div class="like-button">
-                <img src="images/thumb-icon.png" alt="Like Button">
-            </div>
-        </div>
-    </div>
-    <%- include('footer') %>
+    <%- include('header') %>
+  <ul class="picture-container">
+    <li class="picture">
+      <img src="images/five.jpg" alt="Image 1">
+    </li>
+    <li class="picture">
+      <img src="images/five.jpg" alt="Image 2">
+    </li>
+    <li class="picture">
+      <img src="images/five.jpg" alt="Image 3">
+    </li>
+    <li class="picture">
+        <img src="images/five.jpg" alt="Image 1">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 2">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 3">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 1">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 2">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 3">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 1">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 2">
+      </li>
+      <li class="picture">
+        <img src="images/five.jpg" alt="Image 3">
+      </li>
+    <!-- Add more pictures here -->
+  </ul>
+  <%- include('footer') %>
 </body>
 </html>
