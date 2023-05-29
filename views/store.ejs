@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Product Catalog</title>
-  
   <style>
     body {
       margin: 0;
@@ -23,8 +22,8 @@
     }
 
     .product img {
-      width: 400px;
-      height: 300px;
+      max-width: 100%;
+      height: auto;
     }
 
     .product .price {
@@ -47,25 +46,24 @@
       background-color: #45a049;
     }
 
+    .product .like-count {
+      font-size: 36px; /* Updated font-size */
+      margin-top: 10px; /* Adjusted margin-top */
+    }
+
     h1 {
       font-size: 36px;
-      margin-top: 70px;
       margin-bottom: 20px;
     }
 
     @media (max-width: 600px) {
       .product {
-        flex: 0 0 80%;
-      }
-      .product img {
-        width: 100%;
-        height: auto;
+        flex-basis: 80%;
       }
     }
   </style>
 </head>
 <body>
-    <%- include('header') %>
   <h1>Product Catalog</h1>
 
   <div id="catalog-container">
@@ -73,74 +71,43 @@
       <img src="images/five.jpg" alt="Product 1">
       <div class="price">$10</div>
       <button class="like-button">Like</button>
+      <span class="like-count">0</span>
     </div>
 
     <div class="product">
       <img src="images/five.jpg" alt="Product 2">
       <div class="price">$15</div>
       <button class="like-button">Like</button>
+      <span class="like-count">0</span>
     </div>
 
     <div class="product">
       <img src="images/five.jpg" alt="Product 3">
       <div class="price">$20</div>
       <button class="like-button">Like</button>
+      <span class="like-count">0</span>
     </div>
-
     <div class="product">
         <img src="images/five.jpg" alt="Product 1">
         <div class="price">$10</div>
         <button class="like-button">Like</button>
+        <span class="like-count">0</span>
       </div>
   
       <div class="product">
         <img src="images/five.jpg" alt="Product 2">
         <div class="price">$15</div>
         <button class="like-button">Like</button>
+        <span class="like-count">0</span>
       </div>
   
       <div class="product">
         <img src="images/five.jpg" alt="Product 3">
         <div class="price">$20</div>
         <button class="like-button">Like</button>
+        <span class="like-count">0</span>
       </div>
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 1">
-        <div class="price">$10</div>
-        <button class="like-button">Like</button>
-      </div>
-  
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 2">
-        <div class="price">$15</div>
-        <button class="like-button">Like</button>
-      </div>
-  
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 3">
-        <div class="price">$20</div>
-        <button class="like-button">Like</button>
-      </div>
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 1">
-        <div class="price">$10</div>
-        <button class="like-button">Like</button>
-      </div>
-  
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 2">
-        <div class="price">$15</div>
-        <button class="like-button">Like</button>
-      </div>
-  
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 3">
-        <div class="price">$20</div>
-        <button class="like-button">Like</button>
-      </div>
-
     <!-- Add more product divs here -->
   </div>
-  <%- include('footer') %>
 </body>
 </html>
