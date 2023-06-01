@@ -1,0 +1,101 @@
+<!-- search.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Page Title</title>
+  <style>
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    body {
+      font-family: Cheltenham, Times New Roman, serif;
+    }
+    
+    h1 {
+      font-size: 48px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: "Crimson Text", Georgia, serif;
+    }
+
+    /* Reset default browser styles */
+    body, h1, h2 {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgb(205, 177, 131);
+      color: #fff;
+      padding-bottom: 20px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+
+    .login-form {
+      display: flex;
+      align-items: center;
+    }
+
+    .login-form label {
+      margin-right: 10px;
+      color: #fff;
+    }
+
+    .login-form input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .login-form button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="padding-top: 70px;">
+    <form id="searchForm" class="login-form" action="/search" method="GET">
+      <label for="login">Search:</label>
+      <input type="text" id="login" name="query">
+      <button style="margin: 0px; padding: 10px; padding-left: 10px; margin-left: 10px;" type="submit">Submit</button>
+    </form>
+  </header>
+  
+  <div id="searchResults">
+    <% if (results && results.length > 0) { %>
+      <h2>Search Results for '<%= searchQuery %>'</h2>
+      <% results.forEach((result) => { %>
+        <div class="result">
+          <% result.articleContent.forEach((paragraph) => { %>
+            <p><%= paragraph %></p>
+          <% }); %>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p>No results found.</p>
+    <% } %>
+  </div>
+</body>
+</html>

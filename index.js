@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const cheerio = require('cheerio');
+const qs = require('qs');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.render('index', { name: 'World' });
@@ -22,28 +24,43 @@ app.get('/store', (req, res) => {
   res.render('store', { name: 'World' });
 });
 
-app.get('/news', async (req, res) => {
+app.get('/news', (req, res) => {
+  res.render('news', { articleContent: null, searchQuery: '' });
+});
+
+app.post('/news', async (req, res) => {
   try {
-    const response = await axios.get('https://medium.com/@emilymenonbender/thought-experiment-in-the-national-library-of-thailand-f2bf761a8a83');
-    const html = response.data;
-    const $ = cheerio.load(html);
+    const searchQuery = req.body.query;
+    const newsApiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=5de12005ffc04d2abda96b241dc1ecbb`;
 
-    // Extract the <h1> tag and store its content
-    const title = $('h1').text();
+    const response = await axios.get(newsApiUrl);
+    const articles = response.data.articles;
 
-    // Extract all <p> tags with class 'pw-post-body-paragraph' and store their contents in an array
-    const paragraphs = [];
-    $('p.pw-post-body-paragraph').each((index, element) => {
-      paragraphs.push($(element).text());
-    });
-
-    // Render the 'news.ejs' template with the extracted data
-    res.render('news', { title, paragraphs });
+    if (articles.length > 0) {
+      const articleUrl = articles[0].url;
+      const articleResponse = await axios.get(articleUrl);
+      const $ = cheerio.load(articleResponse.data);
+      const articleTitle = $('h1').text();
+      const articleBody = $('p').text();
+      const articleContent = { title: articleTitle, bodyText: articleBody };
+      res.render('news', { articleContent, searchQuery });
+    } else {
+      res.render('news', { articleContent: null, searchQuery });
+    }
   } catch (error) {
-    console.error('Error fetching the article:', error);
-    res.send('Error fetching the article');
+    console.error('Error:', error);
+    res.status(500).send('An error occurred while fetching the articles.');
   }
 });
+
+function stripHtmlTags(html) {
+  if (!html) {
+    return '';
+  }
+
+  // Remove HTML tags using regex
+  return html.replace(/<[^>]+>/g, '');
+}
 
 const port = process.env.PORT || 3000;
 const host = '0.0.0.0';
