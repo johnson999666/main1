@@ -1,92 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Your Page Title</title>
+  <title>Web Parser</title>
   <style>
     body {
-      font-family: Cheltenham, Times New Roman, serif;
+      font-family: sans-serif;
+      margin: 0;
     }
     
-    h1 {
-      font-size: 48px;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      font-family: "Crimson Text", Georgia, serif;
-    }
-
-    /* Reset default browser styles */
-    body, h1, h2 {
-      margin: 0;
-      padding: 0;
-    }
-
     header {
-      background-color: rgb(205, 177, 131);
-      color: #fff;
-      padding-bottom: 20px;
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-bottom: 1px solid #ccc;
     }
-
-    nav {
+    
+    header form {
       display: flex;
-      align-items: center;
       justify-content: space-between;
     }
-
-    .logo {
-      font-size: 24px;
+    
+    header form label {
+      width: 100px;
     }
-
-    .login-form {
-      display: flex;
-      align-items: center;
+    
+    header form input {
+      width: 200px;
     }
-
-    .login-form label {
-      margin-right: 10px;
-      color: #fff;
-    }
-
-    .login-form input[type="text"] {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .login-form button[type="submit"] {
-      background-color: #007bff;
+    
+    header form button {
+      background-color: #000;
       color: #fff;
       border: none;
-      border-radius: 4px;
+      padding: 10px;
       cursor: pointer;
     }
-
-    /* Responsive Styles */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 30px;
-      }
-
-      header {
-        padding-top: 20px;
-      }
-
-      .login-form {
+    
+    div.result {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0 0 5px 0 #ccc;
+    }
+    
+    p {
+      margin: 0;
+    }
+    
+    @media (max-width: 768px) {
+      header form {
         flex-direction: column;
-        align-items: stretch;
       }
-
-      .login-form label {
-        margin-bottom: 10px;
-      }
-
-      .login-form input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .login-form button[type="submit"] {
-        width: 100%;
-      }
+    }
+    
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 0;
+    }
+    
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    
+    div.result {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    
+    div.result > h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 0;
+    }
+    
+    div.result > p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    
+    .submit-button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .submit-button:hover {
+      background-color: #333;
     }
   </style>
 </head>
@@ -95,7 +104,7 @@
     <form id="searchForm" class="login-form" action="/search" method="GET">
       <label for="login">Search:</label>
       <input type="text" id="login" name="query">
-      <button type="submit">Submit</button>
+      <button type="submit" class="submit-button">Submit</button>
     </form>
   </header>
   
@@ -104,9 +113,8 @@
       <h2>Search Results for '<%= searchQuery %>'</h2>
       <% results.forEach((result) => { %>
         <div class="result">
-          <% result.articleContent.forEach((paragraph) => { %>
-            <p><%= paragraph %></p>
-          <% }); %>
+          <h3><%= result.title %></h3>
+          <p><%= result.snippet %></p>
         </div>
       <% }); %>
     <% } else { %>
