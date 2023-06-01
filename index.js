@@ -25,6 +25,11 @@ const buttons = [
   { likes: 0 },
   { likes: 0 }
 ];
+app.get('/buy', (req, res) => {
+  res.render('buy', { name: 'World' });
+});
+
+
 
 // Render the index page
 app.get('/store', (req, res) => {
