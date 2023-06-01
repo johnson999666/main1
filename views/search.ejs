@@ -1,15 +1,8 @@
-<!-- search.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>Your Page Title</title>
   <style>
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 36px;
-      }
-    }
-    
     body {
       font-family: Cheltenham, Times New Roman, serif;
     }
@@ -67,19 +60,42 @@
       cursor: pointer;
     }
 
+    /* Responsive Styles */
     @media (max-width: 600px) {
       h1 {
         font-size: 30px;
+      }
+
+      header {
+        padding-top: 20px;
+      }
+
+      .login-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .login-form label {
+        margin-bottom: 10px;
+      }
+
+      .login-form input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .login-form button[type="submit"] {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <header style="padding-top: 70px;">
+  <header>
     <form id="searchForm" class="login-form" action="/search" method="GET">
       <label for="login">Search:</label>
       <input type="text" id="login" name="query">
-      <button style="margin: 0px; padding: 10px; padding-left: 10px; margin-left: 10px;" type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </header>
   
