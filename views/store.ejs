@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Product Catalog</title>
+
+
+
   <style>
     body {
       margin: 0;
@@ -22,28 +25,24 @@
     }
 
     .product img {
-      width: 500px;
-      height: 400px;
+      width: 70%;
+      height: 300px;
       object-fit: cover;
     }
 
     .product .price {
-      font-size: 30px;
+      font-size: 24px;
       margin-top: 10px;
     }
 
-    .product .buy-button,
-    .product .like-button {
-      font-size: 24px;
+    .product .buy-button {
+      font-size: 20px;
       padding: 10px 20px;
       border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .product .buy-button {
       background-color: #f8c400;
       color: black;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .product .buy-button:hover {
@@ -52,8 +51,13 @@
 
     .product .like-button {
       margin-top: 10px;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
       background-color: #4CAF50;
       color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .product .like-button:hover {
@@ -61,7 +65,7 @@
     }
 
     .product .like-count {
-      font-size: 24px;
+      font-size: 20px;
       margin-top: 10px;
     }
 
@@ -75,39 +79,100 @@
         flex-basis: 80%;
       }
     }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('.like-button').click(function(e) {
-        e.preventDefault();
-        var buttonIndex = $(this).data('index');
-        var likeCount = $(this).siblings('.like-count');
 
-        $.ajax({
-          url: '/store/like/' + buttonIndex,
-          type: 'POST',
-          success: function(data) {
-            likeCount.text(parseInt(likeCount.text()) + 1);
-          }
-        });
-      });
-    });
-  </script>
+    #shopping-cart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+ 
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 70px;
+}
+
+#shopping-cart img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.cart-count {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  </style>
+  
 </head>
 <body>
+  <%- include('header') %>
+  <div id="shopping-cart">
+    <img src="images/cart.png" alt="Shopping Cart">
+    <span class="cart-count">0</span>
+  </div>
+  
   <h1>Product Catalog</h1>
 
   <div id="catalog-container">
-    <% buttons.forEach((button, index) => { %>
-      <div class="product">
-        <img src="images/five.jpg" alt="Product <%= index + 1 %>">
-        <div class="price">$10</div>
-        <button class="buy-button">Buy</button>
-        <button class="like-button" data-index="<%= index %>">Like</button>
-        <span class="like-count"><%= button.likes %></span>
-      </div>
-    <% }) %>
+    <div class="product">
+      <img src="images/shirt.jpg" alt="Product 1">
+      <div class="price">$10</div>
+      <button class="buy-button">Buy</button>
+      <button class="like-button">Like</button>
+      <span class="like-count">0</span>
+    </div>
+
+    <div class="product">
+      <img src="images/shirt.jpg" alt="Product 2">
+      <div class="price">$15</div>
+      <button class="buy-button">Buy</button>
+      <button class="like-button">Like</button>
+      <span class="like-count">0</span>
+    </div>
+
+    <div class="product">
+      <img src="images/shirt.jpg" alt="Product 3">
+      <div class="price">$20</div>
+      <button class="buy-button">Buy</button>
+      <button class="like-button">Like</button>
+      <span class="like-count">0</span>
+    </div>
+
+    <div class="product">
+      <img src="images/shirt.jpg" alt="Product 4">
+      <div class="price">$10</div>
+      <button class="buy-button">Buy</button>
+      <button class="like-button">Like</button>
+      <span class="like-count">0</span>
+    </div>
+ 
+
+
+    <div class="product">
+      <img src="images/shirt.jpg" alt="Product 4">
+      <div class="price">$10</div>
+      <button class="buy-button">Buy</button>
+      <button class="like-button">Like</button>
+      <span class="like-count">0</span>
+    </div>
+    <div class="product">
+      <img src="images/shirt.jpg" alt="Product 4">
+      <div class="price">$10</div>
+      <button class="buy-button">Buy</button>
+      <button class="like-button">Like</button>
+      <span class="like-count">0</span>
+    </div>
   </div>
+
+
+  <%- include('footer') %>
 </body>
 </html>
