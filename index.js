@@ -20,9 +20,25 @@ app.get('/face', (req, res) => {
   res.render('face', { name: 'World' });
 });
 
+const buttons = [
+  { likes: 0 },
+  { likes: 0 },
+  { likes: 0 }
+];
+
+// Render the index page
 app.get('/store', (req, res) => {
-  res.render('store', { name: 'World' });
+  res.render('store', { buttons });
 });
+
+// Handle the like button POST request
+app.post('/store/like/:buttonIndex', (req, res) => {
+  const buttonIndex = parseInt(req.params.buttonIndex);
+  buttons[buttonIndex].likes++;
+  res.redirect('/store');
+});
+
+
 
 app.get('/news', (req, res) => {
   res.render('news', { articleContent: null, searchQuery: '' });
@@ -53,14 +69,7 @@ app.post('/news', async (req, res) => {
   }
 });
 
-function stripHtmlTags(html) {
-  if (!html) {
-    return '';
-  }
 
-  // Remove HTML tags using regex
-  return html.replace(/<[^>]+>/g, '');
-}
 
 const port = process.env.PORT || 3000;
 const host = '0.0.0.0';

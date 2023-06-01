@@ -32,14 +32,18 @@
       margin-top: 10px;
     }
 
-    .product .buy-button {
+    .product .buy-button,
+    .product .like-button {
       font-size: 24px;
       padding: 10px 20px;
       border: none;
-      background-color: #f8c400;
-      color: black;
       cursor: pointer;
       transition: background-color 0.3s ease;
+    }
+
+    .product .buy-button {
+      background-color: #f8c400;
+      color: black;
     }
 
     .product .buy-button:hover {
@@ -48,13 +52,8 @@
 
     .product .like-button {
       margin-top: 10px;
-      font-size: 24px;
-      padding: 10px 20px;
-      border: none;
       background-color: #4CAF50;
       color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
     .product .like-button:hover {
@@ -77,58 +76,38 @@
       }
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.like-button').click(function(e) {
+        e.preventDefault();
+        var buttonIndex = $(this).data('index');
+        var likeCount = $(this).siblings('.like-count');
+
+        $.ajax({
+          url: '/store/like/' + buttonIndex,
+          type: 'POST',
+          success: function(data) {
+            likeCount.text(parseInt(likeCount.text()) + 1);
+          }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <h1>Product Catalog</h1>
 
   <div id="catalog-container">
-    <div class="product">
-      <img src="images/five.jpg" alt="Product 1">
-      <div class="price">$10</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-
-    <div class="product">
-      <img src="images/five.jpg" alt="Product 2">
-      <div class="price">$15</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-
-    <div class="product">
-      <img src="images/five.jpg" alt="Product 3">
-      <div class="price">$20</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-    <div class="product">
-        <img src="images/five.jpg" alt="Product 1">
+    <% buttons.forEach((button, index) => { %>
+      <div class="product">
+        <img src="images/five.jpg" alt="Product <%= index + 1 %>">
         <div class="price">$10</div>
         <button class="buy-button">Buy</button>
-        <button class="like-button">Like</button>
-        <span class="like-count">0</span>
+        <button class="like-button" data-index="<%= index %>">Like</button>
+        <span class="like-count"><%= button.likes %></span>
       </div>
-  
-   
-      <div class="product">
-        <img src="images/five.jpg" alt="Product 3">
-        <div class="price">$20</div>
-        <button class="buy-button">Buy</button>
-        <button class="like-button">Like</button>
-        <span class="like-count">0</span>
-      </div>
-      <div class="product">
-          <img src="images/five.jpg" alt="Product 1">
-          <div class="price">$10</div>
-          <button class="buy-button">Buy</button>
-          <button class="like-button">Like</button>
-          <span class="like-count">0</span>
-        </div>
-    <!-- Add more product divs here -->
+    <% }) %>
   </div>
 </body>
 </html>

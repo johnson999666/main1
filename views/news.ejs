@@ -4,6 +4,7 @@
   <title>News Search</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <%- include('header') %>
   <style>
     body {
       margin: 0;
@@ -95,10 +96,15 @@
 
     <% if (articleContent) { %>
       <h2><%= articleContent.title %></h2>
-      <p><%= articleContent.bodyText %></p>
+      <% articleContent.bodyText.split('\n').forEach(function(paragraph) { %>
+        <% if (paragraph.trim().length > 0) { %>
+          <p><%= paragraph %></p>
+        <% } %>
+      <% }); %>
     <% } else { %>
       <p>No articles found.</p>
     <% } %>
   </div>
 </body>
 </html>
+<%- include('footer') %>
