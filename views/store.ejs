@@ -24,17 +24,21 @@
 
 
             </form>
-            
-          </li>
-          <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
             <form action="/reset" method="POST">
-              <button type="submit" style="padding: 10px 20px; background-color: #4caf50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">Reset</button>
-            </form>
-          </div>
+          <button type="submit" style="padding: 10px 20px; background-color: #4caf50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; margin-top: 10px;">Reset</button>
+        </form>
+          </li>
+          <li>
+           
+        
+    
+          </li>
+         
           
         <% }) %>
-        
+         
       </ul>
+      
     <% } else { %>
       <ul class="product-list">
         <% productCatalog.forEach(product => { %>
