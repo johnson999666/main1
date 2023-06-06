@@ -2,181 +2,85 @@
 <html>
 <head>
   <title>Product Catalog</title>
-
-
-
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-
-    #catalog-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .product {
-      flex: 0 0 40%;
-      text-align: center;
-      margin: 20px;
-    }
-
-    .product img {
-      width: 70%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .product .price {
-      font-size: 24px;
-      margin-top: 10px;
-    }
-
-    .product .buy-button {
-      font-size: 20px;
-      padding: 10px 20px;
-      border: none;
-      background-color: #f8c400;
-      color: black;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .product .buy-button:hover {
-      background-color: #ffc107;
-    }
-
-    .product .like-button {
-      margin-top: 10px;
-      font-size: 20px;
-      padding: 10px 20px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .product .like-button:hover {
-      background-color: #45a049;
-    }
-
-    .product .like-count {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .product {
-        flex-basis: 80%;
-      }
-    }
-
-    #shopping-cart {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 10px;
- 
-  margin-right: 0;
-  margin-left: 0;
-  margin-top: 70px;
-}
-
-#shopping-cart img {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-}
-
-.cart-count {
-  background-color: #4CAF50;
-  color: white;
-  font-size: 14px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-  </style>
-  
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <%- include('header') %>
+  <div class="container">
+    <h1>Product Catalog</h1>
+    <p>Cart Count: <span id="cartCount"><%= cartCount %></span></p>
+
+    <% if (checkoutSubmitted) { %>
+    
+      <ul class="product-list">
+        <% selectedProducts.forEach(product => { %>
+          <li class="product">
+            <h2 class="product-title"><%= product.title %></h2>
+            <img src="<%= product.imageSrc %>" alt="<%= product.title %>" class="product-image">
+            <p class="product-price"><%= product.price %></p>
+            <form action="/checkout" method="POST">
+              <!-- Your form fields here -->
+              <button type="submit" class="checkout-btn checkout-button">Checkout</button>
 
 
-  <div id="shopping-cart">
-    <a href="/buy">
-    <img src="images/cart.png" alt="Shopping Cart">
-    <span class="cart-count">0</span>
-    </a>
-  </div>
-  
-  <h1>Product Catalog</h1>
-
-  <div id="catalog-container">
-    <div class="product">
-      <img src="images/shirt.jpg" alt="Product 1">
-      <div class="price">$10</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-
-    <div class="product">
-      <img src="images/shirt2.jpg" alt="Product 2">
-      <div class="price">$15</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-
-    <div class="product">
-      <img src="images/shirt.jpg" alt="Product 3">
-      <div class="price">$20</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-
-    <div class="product">
-      <img src="images/shirt2.jpg" alt="Product 4">
-      <div class="price">$10</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
- 
-
-
-    <div class="product">
-      <img src="images/shirt2.jpg" alt="Product 4">
-      <div class="price">$10</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
-    <div class="product">
-      <img src="images/shirt3.png" alt="Product 4">
-      <div class="price">$10</div>
-      <button class="buy-button">Buy</button>
-      <button class="like-button">Like</button>
-      <span class="like-count">0</span>
-    </div>
+            </form>
+            
+          </li>
+        
+        <% }) %>
+        <form action="/reset" method="POST">
+          <button type="submit" class="reset-btn">Reset</button>
+        </form>
+      </ul>
+    <% } else { %>
+      <ul class="product-list">
+        <% productCatalog.forEach(product => { %>
+          <li class="product">
+            <h2 class="product-title"><%= product.title %></h2>
+            <img src="<%= product.imageSrc %>" alt="<%= product.title %>" class="product-image">
+            <p class="product-price"><%= product.price %></p>
+            <form action="/addToCart" method="POST">
+              <input type="hidden" name="productId" value="<%= product.id %>">
+              <button type="submit">Add to Cart</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+      <form action="/checkout" method="POST">
+        <button type="submit" class="checkout-btn">Checkout</button>
+      </form>
+    <% } %>
   </div>
 
+  <script>
+    function makePayment() {
+  var cardNumber = prompt("Please enter your credit card number:");
+  var cvv = prompt("Please enter the CVV number on the back of your card:");
+  var expirationDate = prompt("Please enter the expiration date of your card (MM/YYYY):");
 
-  <%- include('footer') %>
+  // You can perform validation or other necessary checks on the input here
+
+  alert("Payment Successful! Thank you for your purchase!");
+}
+
+var buttons = document.getElementsByClassName("checkout-button");
+
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function() {
+    makePayment();
+  });
+}
+
+function makePayment() {
+  var cardNumber = prompt("Please enter your credit card number:");
+  var cvv = prompt("Please enter the CVV number on the back of your card:");
+  var expirationDate = prompt("Please enter the expiration date of your card (MM/YYYY):");
+
+  // You can perform validation or other necessary checks on the input here
+
+  alert("Payment Successful! Thank you for your purchase!");
+}
+
+
+  </script>
 </body>
 </html>
