@@ -3,7 +3,7 @@
 
 <head>
   <title>Image Gallery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,71 +14,61 @@
 
     h1 {
       margin-bottom: 20px;
+      padding-top: 50px;
     }
 
     .image-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 10px;
+      justify-items: center;
+      align-items: center;
     }
 
     .image-container img {
-      width: 300px;
+      max-width: 100%;
       height: auto;
-      margin: 10px;
-      border: 3px solid #f2f2f2;
       border-radius: 5px;
-      transition: transform 0.3s;
       cursor: pointer;
     }
-
-    .image-container img:hover {
-      transform: scale(1.05);
-    }
-
-    .image-container img.active {
-      width: auto;
-      max-width: 90%;
-      height: auto;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      cursor: zoom-out;
-    }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const images = document.querySelectorAll('.image-container img');
-
-      function toggleImageSize() {
-        this.classList.toggle('active');
-      }
-
-      images.forEach(function (image) {
-        image.addEventListener('click', toggleImageSize);
-      });
-    });
-  </script>
 </head>
 
 <body>
+  <%- include('header') %>
   <h1>Image Gallery</h1>
 
   <div class="image-container">
-    <img src="images/two.jpg" alt="Image 1">
-    <img src="images/two.jpg" alt="Image 2">
-    <img src="images/two.jpg" alt="Image 3">
-    <img src="images/two.jpg" alt="Image 1">
-    <img src="images/two.jpg" alt="Image 2">
-    <img src="images/two.jpg" alt="Image 3"> 
-    <img src="images/two.jpg" alt="Image 1">
-    <img src="images/two.jpg" alt="Image 2">
-    <img src="images/two.jpg" alt="Image 3">
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 1">
+      <img src="images/two.jpg" alt="Image 1">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 2">
+      <img src="images/two.jpg" alt="Image 2">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 3">
+      <img src="images/two.jpg" alt="Image 3">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 1">
+      <img src="images/two.jpg" alt="Image 1">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 2">
+      <img src="images/two.jpg" alt="Image 2">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 3">
+      <img src="images/two.jpg" alt="Image 3">
+    </a><a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 1">
+      <img src="images/two.jpg" alt="Image 1">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 2">
+      <img src="images/two.jpg" alt="Image 2">
+    </a>
+    <a href="images/two.jpg" data-lightbox="image-gallery" data-title="Image 3">
+      <img src="images/two.jpg" alt="Image 3">
+    </a>
     <!-- Add more images here -->
   </div>
-</body>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+</body>
+<%- include('footer') %>
 </html>
