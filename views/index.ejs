@@ -5,6 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    var originalListContent;
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'zh-CN,en' }, 'google_translate_element');
+      originalListContent = document.getElementById('product-list').innerHTML;
+    }
+
+    function translateList(language) {
+      var listContent = originalListContent;
+      if (language === 'zh-CN') {
+        google.translate.TranslateElement.getInstance().translate(listContent, 'zh-CN', function (translatedText) {
+          document.getElementById('product-list').innerHTML = translatedText;
+        });
+      } else {
+        document.getElementById('product-list').innerHTML = listContent;
+      }
+    }
+
+    function toggleTranslation() {
+      var language = google.translate.TranslateElement.getInstance().getTargetLanguage();
+      if (language === 'zh-CN') {
+        translateList('en');
+      } else {
+        translateList('zh-CN');
+      }
+    }
+  </script>
 </head>
 <body>
   <%- include('header') %>
@@ -213,6 +243,16 @@ li {
       colorChanger.start();
     });
   </script>
+  <script>
+    function translatePage(language) {
+      if (typeof google !== 'undefined' && google.translate) {
+        google.translate.TranslateElement.getInstance().changeLanguage(language);
+        toggleTranslation();
+      }
+    }
+  </script>
+  
+   <div id="google_translate_element"></div>
   
     <%- include('footer') %>
 </body>
